@@ -1,0 +1,68 @@
+.style_input{
+    height: 5vh;
+}
+.style_button{
+    color:white;
+    background-color: blueviolet;
+    width: 80px;
+    height: auto;
+    border-radius:5px ;
+}
+.bg_container{
+    background-color: lavender;
+    min-height: 100vh;
+    background-size:cover ;
+}
+.class_container_list{
+    list-style-type: none;
+    
+}
+.checked{
+    text-decoration: line-through;
+}
+.list_container{
+    width: 100%;
+    
+    background-color: cyan;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 5px;
+    border-top-width: 0px;
+    border-bottom-width: 0px;
+    border-right-width: 0px;
+    border-color: bisque;
+    padding-left: 15px;
+}
+.check_box_input{
+    width: 25px;
+    height: 25px;
+    margin-top:5px;
+    margin-right: 12px;
+}
+.label_containers{
+    width: 55%;
+    font-size: 23px;
+    color:black;
+}
+.label_date_and_time{
+    width: 15%;
+    font-size: 23px;
+    color:black;
+}
+
+.deleted_trash{
+    text-align: right;
+    width: 10%;
+   
+}
+.trash_container{
+    padding: 10px;
+   
+   
+}
+.deadlinebutton{
+    width: 100px;
+}
+.addcolortocaret{
+    color: lavender;
+}
