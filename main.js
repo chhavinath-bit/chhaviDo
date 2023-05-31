@@ -3,7 +3,89 @@ let orderText = document.getElementById("OrderBYbutton");
 let caretUp = document.getElementById("caretUp");
 let caretDown = document.getElementById("caretDown");
 let deadlineContainer = document.getElementById("deadlineContainer");
+let userInput = document.getElementById("userInputId");
+let userTime = document.getElementById("userTimeId");
+let userDate = document.getElementById("userDateId");
+let searchLogoSm=document.getElementById("searchLogoSm");
+let searchbarSm=document.getElementById("searchbarSm");
+let searchsmall=document.getElementById("searchsmall");
+let formSmall=document.getElementById("formsmall");
+let searchmd= document.getElementById("searchmd");
+function searchTodosm(){
+    let input= searchsmall.value;
+    let filter= input.toUpperCase();
+    
+    let ul = document.getElementById("todoitemcontainer");
+  
+    let li = ul.getElementsByTagName("li");
+    for(let i=0; i<li.length; i++){
+           
+        a = li[i].getElementsByTagName("label")[0];
+        // console.log(a.textContent);
 
+       let txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].classList.remove("d-none");
+        } else {
+          li[i].classList.add("d-none");
+        }
+        // console.log("display wala chal gya");
+    }
+    }
+searchsmall.addEventListener("keyup", searchTodosm);
+// searchmd.addEventListener("change", searchTodomd);
+
+function searchTodomd(){
+    let input= searchmd.value;
+    let filter= input.toUpperCase();
+    
+    let ul = document.getElementById("todoitemcontainer");
+  
+    let li = ul.getElementsByTagName("li");
+    for(let i=0; i<li.length; i++){
+           
+        a = li[i].getElementsByTagName("label")[0];
+        // console.log(a.textContent);
+
+       let txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          li[i].classList.remove("d-none");
+        } else {
+          li[i].classList.add("d-none");
+        }
+        // console.log("display wala chal gya");
+    }
+}
+searchmd.addEventListener("keyup",searchTodomd);
+formSmall.addEventListener("submit", function(event){
+    event.preventDefault();
+});
+searchLogoSm.addEventListener("click",function(){
+    searchbarSm.classList.remove("d-none");
+    searchLogoSm.classList.add("d-none");
+});
+searchsmall.addEventListener("blur",function(){
+    if(searchsmall.value===""){
+    // console.log("blurEVenttriggered");
+    searchbarSm.classList.add("d-none");
+    searchLogoSm.classList.remove("d-none");
+}
+})
+userInput.addEventListener("keyup", function(event){
+  if(event.key==="Enter"){
+    userDate.focus();
+  }
+});
+userDate.addEventListener("keyup", function(event){
+    if(event.key==="Enter"){
+        userTime.focus();
+    }
+  });
+  userTime.addEventListener("keyup", function(event){
+    if(event.key==="Enter"){
+        onClickAdd();
+    }
+  });
 function getTodoData() {
     let todoDataFile = JSON.parse(localStorage.getItem("todoData"));
     if (todoDataFile === null) {
@@ -97,11 +179,10 @@ let arr = getTodoDataarr();
 // },
 
 function onClickAdd() {
-    let userInput = document.getElementById("userInputId");
-    let userTime = document.getElementById("userTimeId");
+  
     let userInputValue = userInput.value;
     let userTimeValue = userTime.value;
-    let userDate = document.getElementById("userDateId");
+   
     let userDateValue = userDate.value;
     if (userInputValue === "" || userTimeValue === "" || userDateValue === "") {
         alert("Enter a valid text");
@@ -250,10 +331,12 @@ function checkTheCheckbox(checkBoxId, labelId, todoId) {
     } else {
         todoObject.isCheked = true;
     }
+    onClickSave();
 }
 
 function AZbutton() {
     if (A_Z === 0) {
+        deadlineContainer.classList.add("d-none");
         todoListItems.sort((a, b) => {
             let fa = a.text.toLowerCase(),
                 fb = b.text.toLowerCase();
@@ -302,6 +385,7 @@ function AZbutton() {
 
 function ZAbutton() {
     if (Z_A === 0) {
+        deadlineContainer.classList.add("d-none");
         todoListItems.sort((a, b) => {
             let fa = a.text.toLowerCase(),
                 fb = b.text.toLowerCase();
@@ -464,7 +548,7 @@ function ondecreasingDeadline() {
 function createAndAppend(todos) {
     let todoId = "todo" + todos.uniqueNum;
 
-
+    
     let listItem = document.createElement("li");
     listItem.classList.add("d-flex", "flex-row");
     listItem.id = todoId;
